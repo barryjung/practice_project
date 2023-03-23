@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>연습프로젝트</title>
+
+    <script>
+        $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            fetch('/listing').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                console.log(rows)
+                rows.forEach((a) => {
+                    let name = a['name']
+                    let content = a['content']
+
+                    let temp_html = `<p>${name} ${content}</p>`
+                    $('#list_area').append(temp_html)
+                });
+            });
+        };
+
+    </script>
+</head>
+
+<body>
+    <h1>연습프로젝트</h1>
+    <div>
+
+    </div>
+    <div id="list_area"></div>
+</body>
+
+</html>
