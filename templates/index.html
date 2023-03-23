@@ -36,7 +36,7 @@
             formData.append("content_give", content);
 
             fetch('/add', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                console.log(data);
+                console.log(data)
                 alert(data['result'])
                 window.location.href = '/'
             }
@@ -45,11 +45,12 @@
 
         function del(a) {
             let name = a
+
             let formData = new FormData();
             formData.append("name_give", name);
 
             fetch('/delete', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                console.log(data);
+                console.log(data)
                 alert(data['result'])
                 window.location.href = '/'
             }
