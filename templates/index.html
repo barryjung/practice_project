@@ -55,9 +55,7 @@
             })
         }
 
-        function modify_set(a) {
-            let name = a
-
+        function modify_set(name) {
             let formData = new FormData()
             formData.append("name_give", name)
 
@@ -74,9 +72,7 @@
             })
         }
 
-        function modify_confirm(a) {
-            let base_name = a
-
+        function modify_confirm(base_name) {
             let name = $("#name").val()
             let content = $("#content").val()
 
