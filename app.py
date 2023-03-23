@@ -27,5 +27,13 @@ def add_task():
     return jsonify({'result': '입력 완료!'})
 
 
+@app.route("/delete", methods=["POST"])
+def delete_task():
+    name = request.form['name_give']
+
+    db.tasks.delete_one({'name': name})
+    return jsonify({'result': '삭제 완료!'})
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

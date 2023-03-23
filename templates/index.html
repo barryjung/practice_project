@@ -21,7 +21,7 @@
                     let name = a['name']
                     let content = a['content']
 
-                    let temp_html = `<p>${name} ${content}</p>`
+                    let temp_html = `<p>${name} ${content}<button onclick="del('${name}')">삭제</button></p>`
                     $('#list_area').append(temp_html)
                 });
             });
@@ -36,13 +36,25 @@
             formData.append("content_give", content);
 
             fetch('/add', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                console.log(data)
+                console.log(data);
                 alert(data['result'])
                 window.location.href = '/'
             }
             )
         }
 
+        function del(a) {
+            let name = a
+            let formData = new FormData();
+            formData.append("name_give", name);
+
+            fetch('/delete', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                console.log(data);
+                alert(data['result'])
+                window.location.href = '/'
+            }
+            )
+        }
     </script>
 </head>
 
