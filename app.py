@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from flask import Flask, render_template, request, jsonify
+
 app = Flask(__name__)
 client = MongoClient(
     'mongodb+srv://sparta:test@cluster0.snls57l.mongodb.net/?retryWrites=true&w=majority')
@@ -24,6 +25,11 @@ def add_task():
 
     doc = {'name': name, 'content': content}
     db.tasks.insert_one(doc)
+
+    row = db.tasks.find_one({'name': name})
+    id = str(row['_id'])
+    db.tasks.update_one({'_id': row['_id']}, {'$set': {'id': id}})
+
     return jsonify({'result': '입력 완료!'})
 
 
